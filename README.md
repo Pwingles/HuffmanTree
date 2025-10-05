@@ -1,5 +1,5 @@
 #  Project 3 – Part 1: **Scanner**
-**Course:** M-CS 315-001-003 — Fall 2025  
+**Course:** CS 315 — Fall 2025  
 **Student:** Kevin Rodriguez 
 **Student ID:** 008858727
 **Instructor:** Prof. Ali Kooshesh
@@ -139,6 +139,15 @@ Other code snippets and logic were inspired by:
 - ChatGPT - Used for Generating a clean README template
 - ChatGPT - As my code was getting messy I asked it to make helper function headers (no code) in which
 I could fill in the logic myself to keep my code clean and organized.
+
+**I learned more about casting**
+
+| Reason for cast                | Example                                | Why it matters                               |
+| ------------------------------ | -------------------------------------- | -------------------------------------------- |
+| Make bytes non-negative        | `unsigned char uc = (unsigned char)c;` | Avoid negative values for non-ASCII bytes    |
+| Feed safely to ctype functions | `std::tolower(uc)`                     | Prevent undefined behavior                   |
+| Compare against ASCII range    | `uc <= 127`, `uc >= 'A' && uc <= 'Z'`  | Guarantees consistent results across systems |
+
 ---
 
 **Acknowledgments:**  
