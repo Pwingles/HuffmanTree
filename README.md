@@ -136,6 +136,7 @@ krodriguez@blue:~/project3_part1$
 
 Other code snippets and logic were inspired by:
 - [C++ Reference](https://cplusplus.com/doc/tutorial/files/) – File I/O in C++
+- StackOverflow for general help
 - ChatGPT - Used for Generating a clean README template
 - ChatGPT - As my code was getting messy I asked it to make helper function headers (no code) in which
 I could fill in the logic myself to keep my code clean and organized.
@@ -152,3 +153,4 @@ I could fill in the logic myself to keep my code clean and organized.
 
 **Acknowledgments:**  
 Starter project framework and utilities provided by Prof. Ali Kooshesh.  
+
