@@ -1,0 +1,1 @@
+/usr/lib64/ccache/c++ -O3 -DNDEBUG CMakeFiles/p3_part1.dir/main.cpp.o CMakeFiles/p3_part1.dir/Scanner.cpp.o CMakeFiles/p3_part1.dir/utils.cpp.o -o p3_part1 
