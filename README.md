@@ -3,6 +3,7 @@
 **Student:** Kevin Rodriguez 
 **Student ID:** 008858727
 **Instructor:** Prof. Ali Kooshesh
+**GitHub Repo:** https://github.com/Pwingles/Huffman
 
 ---
 
@@ -153,4 +154,5 @@ I could fill in the logic myself to keep my code clean and organized.
 
 **Acknowledgments:**  
 Starter project framework and utilities provided by Prof. Ali Kooshesh.  
+
 
