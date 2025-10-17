@@ -1,158 +1,199 @@
-#  Project 3 – Part 1: **Scanner**
-**Course:** CS 315 — Fall 2025  
-**Student:** Kevin Rodriguez 
-**Student ID:** 008858727
-**Instructor:** Prof. Ali Kooshesh
-**GitHub Repo:** https://github.com/Pwingles/Huffman
+
+````markdown
+# Project 3 — Part 2 : Binary Search Tree & Word Frequencies  
+**CS 315 – Data Structures**  
+**Author:** P. Wingles  
+**Repository:** [HuffmanPart2 (GitHub)](https://github.com/Pwingles/HuffmanPart2/tree/master)
 
 ---
 
-## 📘 Overview
-This project implements the **tokenization phase** of a Huffman-coding pipeline.  
-The program reads a plain-text input file, normalizes it to lowercase, extracts valid **word tokens** according to the project specification, and writes each token on its own line to a `.tokens` file in the same directory.
+## 🧩 Overview
+Part 2 extends Part 1’s tokenization system into a full **Binary Search Tree (BST)**–based frequency analyzer.  
+The program reads a text file, tokenizes the contents into words, builds a BST to count occurrences,  
+and produces two output files per input:
 
-This submission covers **Part 1 – Scanner** only.  
-Later phases (BST, frequency list, Huffman tree) will build upon this component.
+1. `<base>.tokens` – every token extracted from the text (from Part 1)  
+2. `<base>.freq` – alphabetically sorted words with their corresponding counts  
+
+This stage provides the structured word-frequency data used later for Huffman coding.
 
 ---
 
-## ⚙️ Build Instructions
-Compile all source files with **C++20** support:
+## 🧠 Concepts & Goals
+- **Data Structures:** Binary Search Tree (`BinSearchTree`) and custom nodes (`TreeNode`)  
+- **Algorithms:** In-order traversal for alphabetic output  
+- **File I/O:** Read `.txt`, write `.tokens` and `.freq`  
+- **Utility Modules:** `Scanner`, `PriorityQueue`, `utils`  
+- **Deterministic Behavior:** Tokens are shuffled with seed `0xC0FFEE` before insertion for reproducible results  
+
+---
+
+## ⚙️ Build & Run Instructions
+
+### Compile manually
+```bash
+g++ -std=c++20 -Wall *.cpp -o p3_part2.x
+````
+
+### Run on a single file
 
 ```bash
-g++ -std=c++20 -Wall *.cpp -o huffman_part1
+./p3_part2.x input_output/the_call_of_the_wild.txt
 ```
 
----
-
-## ▶️ Run Instructions
-Run the executable with **exactly one argument**, the path to an input `.txt` file in the `input_output/` directory:
-
-```bash
-./huffman_part1 input_output/the_call_of_the_wild.txt
-```
-
-### Example Output Files
-After successful execution, the following file will be created:
+This generates:
 
 ```
 input_output/the_call_of_the_wild.tokens
+input_output/the_call_of_the_wild.freq
 ```
 
-Each line in `.tokens` contains a single lowercase word token, stripped of punctuation, digits, dashes, and non-ASCII characters, with only internal apostrophes preserved (e.g., `camp's`, `o'keefe`).
-
----
-
-## 🧩 Tokenization Rules (Summary)
-- Convert input to lowercase (ASCII only).
-- Valid tokens: `[a–z]+` or `[a–z]+’[a–z]+` (apostrophe only between letters).
-- Treat digits, punctuation, quotes, whitespace, and dashes as separators.
-- Remove leading/trailing apostrophes.
-- Write **exactly one token per line**, end file with a newline.
-- Return appropriate `error_type` values on failure.
-
----
-
-## 🧪 Testing
-The project was compiled and tested on **blue** using the provided scripts:
+### Verify against instructor reference
 
 ```bash
-bash compile_and_test.bash the_call_of_the_wild.txt
+diff -u input_output/the_call_of_the_wild.freq \
+  /home/faculty/kooshesh/cs315_fall2025/project3/part2/freq/the_call_of_the_wild.freq
 ```
 
-Output matched the reference results (no `diff` output).
+✅ No output from `diff` ⇒ files match perfectly.
 
 ---
 
-## 📁 Project Structure
+## 🧪 Testing on Blue
+
+1. Copy the provided scripts:
+
+```bash
+cp /home/faculty/kooshesh/cs315_fall2025/project3/part2/copy_files.bash .
+cp /home/faculty/kooshesh/cs315_fall2025/project3/part2/compile_and_test_project3_part2.bash .
 ```
-project3_part1/
+
+2. Copy sample inputs:
+
+```bash
+bash copy_files.bash
+```
+
+3. Compile + run + compare all:
+
+```bash
+bash compile_and_test_project3_part2.bash
+```
+
+Expected output:
+
+```
+tokens matches
+freq matches
+Summary: 20 match(es), 0 diff(s)
+```
+
+---
+
+## 🧱 Core Components
+
+| File                       | Description                                                                                           |
+| -------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **main.cpp**               | Controls overall flow: tokenization → BST build → frequency file output                               |
+| **BinSearchTree.h / .cpp** | Implements BST with `insert`, `bulkInsert`, `inorderCollect`, `contains`, `countOf`, `height`, `size` |
+| **TreeNode.h**             | Defines node structure (word + frequency + links)                                                     |
+| **PriorityQueue.h / .cpp** | Stores `TreeNode*` by frequency (prep for Part 3 Huffman coding)                                      |
+| **Scanner.hpp / .cpp**     | Reads and tokenizes input text                                                                        |
+| **utils.hpp / .cpp**       | Error-checking and file-I/O helpers                                                                   |
+| **CMakeLists.txt**         | Build configuration for CLion / CMake                                                                 |
+
+---
+
+## 📊 Program Output Example
+
+```bash
+./p3_part2.x input_output/the_toil_of_trace_and_trail.txt
+```
+
+Output:
+
+```
+BST height: 28
+BST unique words: 1432
+Total tokens: 5471
+Min frequency: 1
+Max frequency: 371
+```
+
+Files produced:
+
+```
+input_output/the_toil_of_trace_and_trail.tokens
+input_output/the_toil_of_trace_and_trail.freq
+```
+
+---
+
+## ✅ Verification Status
+
+All reference comparisons pass on Blue:
+
+```
+Summary: 20 match(es), 0 diff(s)
+```
+
+This confirms tokenization, BST logic, and `.freq` formatting are correct and ready for Part 3.
+
+---
+
+## 📦 Project Structure
+
+```
+Project3_Part2/
+├── BinSearchTree.cpp / .h
+├── PriorityQueue.cpp / .h
+├── Scanner.cpp / .hpp
+├── TreeNode.h
+├── utils.cpp / .hpp
 ├── main.cpp
-├── Scanner.cpp
-├── Scanner.hpp
-├── utils.cpp
-├── utils.hpp
-├── README.md
-└── input_output/
-    ├── the_call_of_the_wild.txt
-    └── the_call_of_the_wild.tokens
+├── CMakeLists.txt
+├── input_output/
+│   ├── *.txt
+│   ├── *.tokens
+│   └── *.freq
+├── compile_and_test_project3_part2.bash
+└── copy_files.bash
 ```
 
 ---
 
-## 🧾 Error Handling
-- **FILE_NOT_FOUND**, **DIR_NOT_FOUND**, **UNABLE_TO_OPEN_FILE**
-- **UNABLE_TO_OPEN_FILE_FOR_WRITING**, **FAILED_TO_WRITE_FILE**
-- Prints human-readable message to `stderr` and exits non-zero.
+## 🧾 Notes
+
+* BST insertion order is randomized with a fixed seed for consistent grading.
+* `.freq` output format matches instructor spec:
+
+  ```
+         <right-aligned count> <word>
+  ```
+
+  (10-character padded numeric field).
 
 ---
 
-## ✅ Verification
-- Successfully produces identical `.tokens` outputs to instructor references.
-- Matches tokenization examples from the project description.
+## 🔗 Repository
 
-# 🖥️ Proof of Successful Execution
-
-Below is a transcript of my test runs on blue showing successful compilation,
-execution, and matching outputs (no differences found by the provided test script).
-
-```
-Last login: Sun Oct  5 08:46:04 2025 from 
-krodriguez@blue:~$ cd project3_part1/
-krodriguez@blue:~/project3_part1$ g++ -std=c++20 -Wall *.cpp -o huffman_part1
-krodriguez@blue:~/project3_part1$ ./huffman_part1 input_output/call_of_the_wild.txt
-Error: File input_output/call_of_the_wild.txt doesn't exist. Terminating...
-krodriguez@blue:~/project3_part1$ ./huffman_part1 input_output/the_call_of_the_wild.txt
-krodriguez@blue:~/project3_part1$ ls input_output/
-for_the_love_of_a_man.txt  into_the_primitive.txt  sample.txt                         TheBells.tokens  the_call_of_the_wild.tokens  the_dominant_primordial_beast.txt  the_sounding_of_the_call.txt     who_has_won_to_mastership.tokens
-into_the_primitive.tokens  sample.tokens           tableOfContents_TheCallOfWild.txt  TheBells.txt     the_call_of_the_wild.txt     the_law_of_club_and_fang.txt       the_toil_of_trace_and_trail.txt  who_has_won_to_mastership.txt
-krodriguez@blue:~/project3_part1$ pwd
-/home/student/krodriguez/project3_part1
-krodriguez@blue:~/project3_part1$ find . -name "*.tokens"
-./input_output/TheBells.tokens
-./input_output/the_call_of_the_wild.tokens
-./input_output/into_the_primitive.tokens
-./input_output/sample.tokens
-./input_output/who_has_won_to_mastership.tokens
-krodriguez@blue:~/project3_part1$ bash compile_and_test.bash the_call_of_the_wild.txt
-Compiling project...
-Running program with input file 'input_output/the_call_of_the_wild.txt'...
-diff input_output/the_call_of_the_wild.tokens /home/faculty/kooshesh/cs315_f2025_p3_part1/part1_tokens_files//the_call_of_the_wild.tokens
-krodriguez@blue:~/project3_part1$ bash compile_and_test.bash into_the_primitive.txt
-Compiling project...
-Running program with input file 'input_output/into_the_primitive.txt'...
-diff input_output/into_the_primitive.tokens /home/faculty/kooshesh/cs315_f2025_p3_part1/part1_tokens_files//into_the_primitive.tokens
-krodriguez@blue:~/project3_part1$ bash compile_and_test.bash who_has_won_to_mastership.txt
-Compiling project...
-Running program with input file 'input_output/who_has_won_to_mastership.txt'...
-diff input_output/who_has_won_to_mastership.tokens /home/faculty/kooshesh/cs315_f2025_p3_part1/part1_tokens_files//who_has_won_to_mastership.tokens
-krodriguez@blue:~/project3_part1$
-```
+**GitHub:** [https://github.com/Pwingles/HuffmanPart2/tree/master](https://github.com/Pwingles/HuffmanPart2/tree/master)
 
 ---
 
-# Sources
-📚 Sources & Links
-- Most Code written by me, Kevin Rodriguez
 
-Other code snippets and logic were inspired by:
-- [C++ Reference](https://cplusplus.com/doc/tutorial/files/) – File I/O in C++
-- StackOverflow for general help
-- ChatGPT - Used for Generating a clean README template
-- ChatGPT - As my code was getting messy I asked it to make helper function headers (no code) in which
-I could fill in the logic myself to keep my code clean and organized.
+## 📚 Sources
+- **Instructor-provided base code and project specifications**  
+  `/home/faculty/kooshesh/cs315_fall2025/project3/part2/`  
 
-**I learned more about casting**
+- **C++ References:**  
+  - [cppreference.com – std::filesystem](https://en.cppreference.com/w/cpp/filesystem)  
+  - [cppreference.com – std::vector](https://en.cppreference.com/w/cpp/container/vector)  
+  - [cppreference.com – std::ofstream](https://en.cppreference.com/w/cpp/io/basic_ofstream)  
+- **Testing Environment:** Blue Linux server (CS 315)  
+- **ChatGPT** Generating README.md - Proofread after by me
+- **Author’s GitHub Repository:**  
+  [https://github.com/Pwingles/HuffmanPart2/tree/master](https://github.com/Pwingles/HuffmanPart2/tree/master)
 
-| Reason for cast                | Example                                | Why it matters                               |
-| ------------------------------ | -------------------------------------- | -------------------------------------------- |
-| Make bytes non-negative        | `unsigned char uc = (unsigned char)c;` | Avoid negative values for non-ASCII bytes    |
-| Feed safely to ctype functions | `std::tolower(uc)`                     | Prevent undefined behavior                   |
-| Compare against ASCII range    | `uc <= 127`, `uc >= 'A' && uc <= 'Z'`  | Guarantees consistent results across systems |
-
----
-
-**Acknowledgments:**  
-Starter project framework and utilities provided by Prof. Ali Kooshesh.  
 
 
