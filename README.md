@@ -2,7 +2,7 @@
 ````markdown
 # Project 3 — Part 2 : Binary Search Tree & Word Frequencies  
 **CS 315 – Data Structures**  
-**Author:** P. Wingles  
+**Author:** Kevin Rodriguez
 **Repository:** [HuffmanPart2 (GitHub)](https://github.com/Pwingles/HuffmanPart2/tree/master)
 
 ---
