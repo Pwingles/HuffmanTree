@@ -128,6 +128,54 @@ p3_part1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\p3_part1.dir\build.make CMakeFiles/p3_part1.dir/build
 .PHONY : p3_part1/fast
 
+BinSearchTree.obj: BinSearchTree.cpp.obj
+.PHONY : BinSearchTree.obj
+
+# target to build an object file
+BinSearchTree.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\p3_part1.dir\build.make CMakeFiles/p3_part1.dir/BinSearchTree.cpp.obj
+.PHONY : BinSearchTree.cpp.obj
+
+BinSearchTree.i: BinSearchTree.cpp.i
+.PHONY : BinSearchTree.i
+
+# target to preprocess a source file
+BinSearchTree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\p3_part1.dir\build.make CMakeFiles/p3_part1.dir/BinSearchTree.cpp.i
+.PHONY : BinSearchTree.cpp.i
+
+BinSearchTree.s: BinSearchTree.cpp.s
+.PHONY : BinSearchTree.s
+
+# target to generate assembly for a file
+BinSearchTree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\p3_part1.dir\build.make CMakeFiles/p3_part1.dir/BinSearchTree.cpp.s
+.PHONY : BinSearchTree.cpp.s
+
+PriorityQueue.obj: PriorityQueue.cpp.obj
+.PHONY : PriorityQueue.obj
+
+# target to build an object file
+PriorityQueue.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\p3_part1.dir\build.make CMakeFiles/p3_part1.dir/PriorityQueue.cpp.obj
+.PHONY : PriorityQueue.cpp.obj
+
+PriorityQueue.i: PriorityQueue.cpp.i
+.PHONY : PriorityQueue.i
+
+# target to preprocess a source file
+PriorityQueue.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\p3_part1.dir\build.make CMakeFiles/p3_part1.dir/PriorityQueue.cpp.i
+.PHONY : PriorityQueue.cpp.i
+
+PriorityQueue.s: PriorityQueue.cpp.s
+.PHONY : PriorityQueue.s
+
+# target to generate assembly for a file
+PriorityQueue.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\p3_part1.dir\build.make CMakeFiles/p3_part1.dir/PriorityQueue.cpp.s
+.PHONY : PriorityQueue.cpp.s
+
 Scanner.obj: Scanner.cpp.obj
 .PHONY : Scanner.obj
 
@@ -209,6 +257,12 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... p3_part1
+	@echo ... BinSearchTree.obj
+	@echo ... BinSearchTree.i
+	@echo ... BinSearchTree.s
+	@echo ... PriorityQueue.obj
+	@echo ... PriorityQueue.i
+	@echo ... PriorityQueue.s
 	@echo ... Scanner.obj
 	@echo ... Scanner.i
 	@echo ... Scanner.s

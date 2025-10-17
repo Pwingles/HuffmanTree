@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "C:/Users/pring/OneDrive/Desktop/Project3/BinSearchTree.cpp" "CMakeFiles/p3_part1.dir/BinSearchTree.cpp.obj" "gcc" "CMakeFiles/p3_part1.dir/BinSearchTree.cpp.obj.d"
+  "C:/Users/pring/OneDrive/Desktop/Project3/PriorityQueue.cpp" "CMakeFiles/p3_part1.dir/PriorityQueue.cpp.obj" "gcc" "CMakeFiles/p3_part1.dir/PriorityQueue.cpp.obj.d"
   "C:/Users/pring/OneDrive/Desktop/Project3/Scanner.cpp" "CMakeFiles/p3_part1.dir/Scanner.cpp.obj" "gcc" "CMakeFiles/p3_part1.dir/Scanner.cpp.obj.d"
   "C:/Users/pring/OneDrive/Desktop/Project3/main.cpp" "CMakeFiles/p3_part1.dir/main.cpp.obj" "gcc" "CMakeFiles/p3_part1.dir/main.cpp.obj.d"
   "C:/Users/pring/OneDrive/Desktop/Project3/utils.cpp" "CMakeFiles/p3_part1.dir/utils.cpp.obj" "gcc" "CMakeFiles/p3_part1.dir/utils.cpp.obj.d"

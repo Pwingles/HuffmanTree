@@ -110,11 +110,41 @@ CMakeFiles/p3_part1.dir/utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/p3_part1.dir/utils.cpp.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\pring\OneDrive\Desktop\Project3\utils.cpp -o CMakeFiles\p3_part1.dir\utils.cpp.s
 
+CMakeFiles/p3_part1.dir/BinSearchTree.cpp.obj: CMakeFiles/p3_part1.dir/flags.make
+CMakeFiles/p3_part1.dir/BinSearchTree.cpp.obj: C:/Users/pring/OneDrive/Desktop/Project3/BinSearchTree.cpp
+CMakeFiles/p3_part1.dir/BinSearchTree.cpp.obj: CMakeFiles/p3_part1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\pring\OneDrive\Desktop\Project3\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/p3_part1.dir/BinSearchTree.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/p3_part1.dir/BinSearchTree.cpp.obj -MF CMakeFiles\p3_part1.dir\BinSearchTree.cpp.obj.d -o CMakeFiles\p3_part1.dir\BinSearchTree.cpp.obj -c C:\Users\pring\OneDrive\Desktop\Project3\BinSearchTree.cpp
+
+CMakeFiles/p3_part1.dir/BinSearchTree.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/p3_part1.dir/BinSearchTree.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\pring\OneDrive\Desktop\Project3\BinSearchTree.cpp > CMakeFiles\p3_part1.dir\BinSearchTree.cpp.i
+
+CMakeFiles/p3_part1.dir/BinSearchTree.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/p3_part1.dir/BinSearchTree.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\pring\OneDrive\Desktop\Project3\BinSearchTree.cpp -o CMakeFiles\p3_part1.dir\BinSearchTree.cpp.s
+
+CMakeFiles/p3_part1.dir/PriorityQueue.cpp.obj: CMakeFiles/p3_part1.dir/flags.make
+CMakeFiles/p3_part1.dir/PriorityQueue.cpp.obj: C:/Users/pring/OneDrive/Desktop/Project3/PriorityQueue.cpp
+CMakeFiles/p3_part1.dir/PriorityQueue.cpp.obj: CMakeFiles/p3_part1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\pring\OneDrive\Desktop\Project3\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/p3_part1.dir/PriorityQueue.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/p3_part1.dir/PriorityQueue.cpp.obj -MF CMakeFiles\p3_part1.dir\PriorityQueue.cpp.obj.d -o CMakeFiles\p3_part1.dir\PriorityQueue.cpp.obj -c C:\Users\pring\OneDrive\Desktop\Project3\PriorityQueue.cpp
+
+CMakeFiles/p3_part1.dir/PriorityQueue.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/p3_part1.dir/PriorityQueue.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\pring\OneDrive\Desktop\Project3\PriorityQueue.cpp > CMakeFiles\p3_part1.dir\PriorityQueue.cpp.i
+
+CMakeFiles/p3_part1.dir/PriorityQueue.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/p3_part1.dir/PriorityQueue.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\pring\OneDrive\Desktop\Project3\PriorityQueue.cpp -o CMakeFiles\p3_part1.dir\PriorityQueue.cpp.s
+
 # Object files for target p3_part1
 p3_part1_OBJECTS = \
 "CMakeFiles/p3_part1.dir/main.cpp.obj" \
 "CMakeFiles/p3_part1.dir/Scanner.cpp.obj" \
-"CMakeFiles/p3_part1.dir/utils.cpp.obj"
+"CMakeFiles/p3_part1.dir/utils.cpp.obj" \
+"CMakeFiles/p3_part1.dir/BinSearchTree.cpp.obj" \
+"CMakeFiles/p3_part1.dir/PriorityQueue.cpp.obj"
 
 # External object files for target p3_part1
 p3_part1_EXTERNAL_OBJECTS =
@@ -122,11 +152,13 @@ p3_part1_EXTERNAL_OBJECTS =
 p3_part1.exe: CMakeFiles/p3_part1.dir/main.cpp.obj
 p3_part1.exe: CMakeFiles/p3_part1.dir/Scanner.cpp.obj
 p3_part1.exe: CMakeFiles/p3_part1.dir/utils.cpp.obj
+p3_part1.exe: CMakeFiles/p3_part1.dir/BinSearchTree.cpp.obj
+p3_part1.exe: CMakeFiles/p3_part1.dir/PriorityQueue.cpp.obj
 p3_part1.exe: CMakeFiles/p3_part1.dir/build.make
 p3_part1.exe: CMakeFiles/p3_part1.dir/linkLibs.rsp
 p3_part1.exe: CMakeFiles/p3_part1.dir/objects1.rsp
 p3_part1.exe: CMakeFiles/p3_part1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\pring\OneDrive\Desktop\Project3\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable p3_part1.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\pring\OneDrive\Desktop\Project3\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable p3_part1.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\p3_part1.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
