@@ -1,4 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/p3_part1.dir/BinSearchTree.cpp.obj"
+  "CMakeFiles/p3_part1.dir/BinSearchTree.cpp.obj.d"
+  "CMakeFiles/p3_part1.dir/PriorityQueue.cpp.obj"
+  "CMakeFiles/p3_part1.dir/PriorityQueue.cpp.obj.d"
   "CMakeFiles/p3_part1.dir/Scanner.cpp.obj"
   "CMakeFiles/p3_part1.dir/Scanner.cpp.obj.d"
   "CMakeFiles/p3_part1.dir/main.cpp.obj"
