@@ -1,4 +1,0 @@
-/usr/bin/cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -S /home/student/krodriguez/project3_part1 -B /home/student/krodriguez/project3_part1/cmake-build-remote-debug
--- Configuring done (0.0s)
--- Generating done (0.0s)
--- Build files have been written to: /home/student/krodriguez/project3_part1/cmake-build-remote-debug

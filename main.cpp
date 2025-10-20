@@ -6,6 +6,7 @@
 #include "BinSearchTree.h"
 #include "TreeNode.h"
 #include "PriorityQueue.h"
+#include "HuffmanTree.h"
 #include "Scanner.hpp"
 #include "utils.hpp"
 #include <algorithm>
@@ -113,36 +114,29 @@ int main(int argc, char* argv[]) {
      * Priority Queue Section
     */
 
-    // Convert std::vector<<std::pair<std::string, int>> wordCounts; to a vector<TreeNodes*>  to pass into PriorityQueue constructor
-    std::vector<TreeNode*> nodes;
-    for (const auto& [word, freq]: wordCounts) {
-        TreeNode* node = new TreeNode(word); // Create a new node with values from wordCounts
-        node -> freq = freq;
-        nodes.push_back(node);
-    }
-
-
-
     // === Write <base>.freq next to the .tokens file ===
     const fs::path freqPath = dir / (base + ".freq");
-
-    // safety check like you did for .tokens
     if (error_type st; (st = canOpenForWriting(freqPath.string())) != NO_ERROR)
         exitOnError(st, freqPath.string());
 
-    // write: one "word count" per line, alphabetical from inorderCollect
+    // sort copy: count desc, word asc
+    auto sorted = wordCounts;
+    std::sort(sorted.begin(), sorted.end(),
+            [](const auto& a, const auto& b) {
+                if (a.second != b.second) return a.second > b.second; // higher count first
+                return a.first < b.first;                              // alphabetical on ties
+            });
+
     std::ofstream freqOut(freqPath);
-    for (const auto& [w, c] : wordCounts) {
-        freqOut << std::setw(10) << c << ' ' << w << '\n';
+    for (const auto& [w, c] : sorted) {
+        freqOut << std::setw(10) << c << ' ' << w << '\n';  // exactly one space
     }
     freqOut.close();
+    
+    // Build the Huffman tree
+    HuffmanTree huffmanTree = HuffmanTree::buildFromCounts(wordCounts);
 
-    // Create a PriorityQueue with the nodes
-    PriorityQueue pq(nodes);
 
-
-    // Print the PriorityQueue testing purposes
-   // pq.print();
 
     
  

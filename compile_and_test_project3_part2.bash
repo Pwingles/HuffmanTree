@@ -59,8 +59,9 @@ while IFS= read -r -d '' txt; do
   basefile=$(basename "$txt")        # e.g., nameOf.txt
   base="${basefile%.txt}"            # e.g., nameOf
 
-echo -e "\n==> Running: $TARGET on $basefile"
-"./$TARGET" "$basefile"
+  echo -e "\n==> Running: $TARGET on $basefile"
+    # Run from inside the input dir so the invocation matches: ./p3_part2.x nameOf.txt
+    "./$TARGET" "$basefile"
 
 
   # Now compare the two expected outputs

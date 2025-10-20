@@ -1,3 +1,0 @@
-/home/student/krodriguez/project3_part1/cmake-build-remote-debug/CMakeFiles/p3_part1.dir
-/home/student/krodriguez/project3_part1/cmake-build-remote-debug/CMakeFiles/edit_cache.dir
-/home/student/krodriguez/project3_part1/cmake-build-remote-debug/CMakeFiles/rebuild_cache.dir
