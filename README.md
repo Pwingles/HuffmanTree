@@ -1,5 +1,5 @@
 
-````markdown
+
 # CS 315 — Project 3: Huffman Coding (Final Version)
 **Student:** Kevin Rodriguez  
 **Instructor:** Prof. Ali Kooshesh  
