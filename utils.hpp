@@ -29,4 +29,5 @@ error_type canOpenForWriting(const std::string& filename);
 error_type writeVectorToFile(const std::string& filename,
                              const std::vector<std::string> & lines);
 
+
 #endif //IMPLEMENTATION_UTILS_HPP

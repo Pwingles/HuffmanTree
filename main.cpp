@@ -14,6 +14,11 @@
 #include <climits> // For INT_MAX
 #include <iomanip>
 
+// Comparison function for sorting word counts (frequency desc, word asc)
+bool compareWordCounts(const std::pair<std::string, int>& a, const std::pair<std::string, int>& b) {
+    if (a.second != b.second) return a.second > b.second; // higher count first
+    return a.first < b.first;                              // alphabetical on ties
+}
 
 int main(int argc, char* argv[]) {
 
@@ -110,6 +115,7 @@ int main(int argc, char* argv[]) {
     std::cout << "Max frequency: " << maxFreq << "\n";
 
 
+
     /**
      * Priority Queue Section
     */
@@ -119,13 +125,9 @@ int main(int argc, char* argv[]) {
     if (error_type st; (st = canOpenForWriting(freqPath.string())) != NO_ERROR)
         exitOnError(st, freqPath.string());
 
-    // sort copy: count desc, word asc
+    // Write frequency file (sorted by count desc, word asc)
     auto sorted = wordCounts;
-    std::sort(sorted.begin(), sorted.end(),
-            [](const auto& a, const auto& b) {
-                if (a.second != b.second) return a.second > b.second; // higher count first
-                return a.first < b.first;                              // alphabetical on ties
-            });
+    std::sort(sorted.begin(), sorted.end(), compareWordCounts); // Created comparison function in utils.h/cpp 
 
     std::ofstream freqOut(freqPath);
     for (const auto& [w, c] : sorted) {
@@ -133,17 +135,44 @@ int main(int argc, char* argv[]) {
     }
     freqOut.close();
     
-    // Build the Huffman tree
+
+
+
+
+
+    // Build
     HuffmanTree huffmanTree = HuffmanTree::buildFromCounts(wordCounts);
 
-
-
+    // Write .hdr file
+    const fs::path hdrPath = dir / (base + ".hdr");
+    if (error_type st; (st = canOpenForWriting(hdrPath.string())) != NO_ERROR)
+        exitOnError(st, hdrPath.string());
     
- 
+    std::ofstream hdrOut(hdrPath);
+    if (huffmanTree.writeHeader(hdrOut) != NO_ERROR) {
+        std::cerr << "Error writing header file\n";
+        return 1;
+    }
+    hdrOut.close();
 
+    // Write <base>.code 
+    const fs::path codePath = dir / (base + ".code");
+    if (error_type st; (st = canOpenForWriting(codePath.string())) != NO_ERROR)
+        exitOnError(st, codePath.string());
+    
+    std::ofstream codeOut(codePath);
+    if (huffmanTree.encode(words, codeOut) != NO_ERROR) {
+        std::cerr << "Error writing code file\n";
+        return 1;
+    }
+    codeOut.close();
 
     return 0;
 }
+
+
+
+
 
 
 

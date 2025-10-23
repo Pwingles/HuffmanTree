@@ -1,15 +1,5 @@
-# Ignore PDF files
-Project 3 Full.pdf
-Project 3 Phase 1.pdf
-Project 3 Phase 2.pdf
 
-# Ignore text versions of project files
-ProjectFull.txt
-
-# Ignore compiled executables
 *.x
 
-# Ignore other common files you might want to ignore
 *.o
-*.exe
 *.out

@@ -7,12 +7,12 @@ set -Eeuo pipefail
 # ---- Configuration (overridable via env vars) -------------------------------
 CXX=${CXX:-g++}
 CXXFLAGS=${CXXFLAGS:--std=c++20 -Wall}
-TARGET=${TARGET:-p3_part2.x}
+TARGET=${TARGET:-p3_complete.x}
 
 # Positional args:
 #   $1 = directory containing the expected .tokens/.freq files (the "somePath")
 #   $2 = input directory (defaults to input_output, with a fallback to input_putput)
-EXPECTED_DIR=${1:-/home/faculty/kooshesh/cs315_fall2025/project3/part2}
+EXPECTED_DIR=${1:-/home/faculty/kooshesh/cs315_fall2025/project3/final_version}
 INPUT_DIR=${2:-input_output}
 
 # Move to the directory containing this script (so relative paths work)
@@ -60,12 +60,12 @@ while IFS= read -r -d '' txt; do
   base="${basefile%.txt}"            # e.g., nameOf
 
   echo -e "\n==> Running: $TARGET on $basefile"
-    # Run from inside the input dir so the invocation matches: ./p3_part2.x nameOf.txt
-    "./$TARGET" "$basefile"
+
+  "./$TARGET" "$basefile"
 
 
   # Now compare the two expected outputs
-  for ext in tokens freq; do
+  for ext in tokens freq code hdr; do
 
     actual="$INPUT_DIR/$base.$ext"
     expected="$EXPECTED_DIR/$ext/$base.$ext"

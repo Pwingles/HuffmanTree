@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-src="/home/faculty/kooshesh/cs315_fall2025/project3/part2/input_files"
+src="/home/faculty/kooshesh/cs315_fall2025/project3/final_version/input_files"
 dst="./input_output"
 
 # Check if source directory exists
