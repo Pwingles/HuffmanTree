@@ -230,6 +230,8 @@ Huffman/
 * Stack Overflow for algorithmic and debugging clarification.
 * ChatGPT used for formatting README and suggesting function prototypes (no code generation).
 * Testing performed on the Blue Linux Server (CS 315 environment).
+* Algorith Structures provided by Instructor
+* *.h Files provided my Instructor
 
 
 ---
@@ -243,4 +245,5 @@ Huffman/
 | **3** | Huffman Coding      | `.codetable`, `.huff` | Yes      |
 
 All components compile, execute, and match instructor reference outputs.
+
 
