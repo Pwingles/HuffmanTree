@@ -1,199 +1,246 @@
 
 ````markdown
-# Project 3 — Part 2 : Binary Search Tree & Word Frequencies  
-**CS 315 – Data Structures**  
-**Author:** Kevin Rodriguez
-**Repository:** [HuffmanPart2 (GitHub)](https://github.com/Pwingles/HuffmanPart2/tree/master)
+# CS 315 — Project 3: Huffman Coding (Final Version)
+**Student:** Kevin Rodriguez  
+**Instructor:** Prof. Ali Kooshesh  
+**Semester:** Fall 2025  
+**Student ID:** 008858727  
+**Course:** CS 315 – Data Structures  
+**Repository:** [https://github.com/Pwingles/Huffman](https://github.com/Pwingles/Huffman)
 
 ---
 
-## 🧩 Overview
-Part 2 extends Part 1’s tokenization system into a full **Binary Search Tree (BST)**–based frequency analyzer.  
-The program reads a text file, tokenizes the contents into words, builds a BST to count occurrences,  
-and produces two output files per input:
+## Overview
 
-1. `<base>.tokens` – every token extracted from the text (from Part 1)  
-2. `<base>.freq` – alphabetically sorted words with their corresponding counts  
+This project implements a complete Huffman Coding system developed in three structured phases:
 
-This stage provides the structured word-frequency data used later for Huffman coding.
+1. **Scanner (Tokenization)** – reads and extracts normalized word tokens from text files.  
+2. **Binary Search Tree (BST) & Frequency Analysis** – counts token frequencies using a BST.  
+3. **Huffman Coding** – constructs a Huffman tree and generates variable-length binary codes for compression.
 
----
-
-## 🧠 Concepts & Goals
-- **Data Structures:** Binary Search Tree (`BinSearchTree`) and custom nodes (`TreeNode`)  
-- **Algorithms:** In-order traversal for alphabetic output  
-- **File I/O:** Read `.txt`, write `.tokens` and `.freq`  
-- **Utility Modules:** `Scanner`, `PriorityQueue`, `utils`  
-- **Deterministic Behavior:** Tokens are shuffled with seed `0xC0FFEE` before insertion for reproducible results  
+Each phase builds upon the previous one, forming a pipeline that transforms plain text into compressed Huffman-encoded data.
 
 ---
 
-## ⚙️ Build & Run Instructions
+## Phase 1 – Scanner: Tokenization
 
-### Compile manually
+### Purpose
+Implements a tokenizer that converts input text into normalized word tokens.
+
+### Features
+- Converts all input to lowercase.
+- Extracts valid word tokens with optional internal apostrophes.
+- Removes punctuation, digits, and non-alphabetic symbols.
+- Writes one token per line to a `.tokens` file.
+
+### Example Run
 ```bash
-g++ -std=c++20 -Wall *.cpp -o p3_part2.x
+./huffman_part1 input_output/the_call_of_the_wild.txt
 ````
 
-### Run on a single file
+Output:
+
+```
+input_output/the_call_of_the_wild.tokens
+```
+
+Example token output:
+
+```
+buck
+was
+born
+to
+freedom
+```
+
+---
+
+## Phase 2 – Binary Search Tree & Frequency Analysis
+
+### Purpose
+
+Builds a Binary Search Tree to store unique words and track their frequencies.
+
+### Features
+
+* Randomized insertion order (seed = `0xC0FFEE`) for deterministic results.
+* In-order traversal for alphabetically sorted output.
+* Outputs `.freq` file showing each word and its frequency.
+* Displays BST height, total token count, and unique word count.
+* Matches instructor reference outputs exactly.
+
+### Example Run
 
 ```bash
 ./p3_part2.x input_output/the_call_of_the_wild.txt
 ```
 
-This generates:
+Produces:
 
 ```
 input_output/the_call_of_the_wild.tokens
 input_output/the_call_of_the_wild.freq
 ```
 
-### Verify against instructor reference
+Example `.freq` file:
 
-```bash
-diff -u input_output/the_call_of_the_wild.freq \
-  /home/faculty/kooshesh/cs315_fall2025/project3/part2/freq/the_call_of_the_wild.freq
 ```
-
-✅ No output from `diff` ⇒ files match perfectly.
+        371 the
+         92 of
+         87 and
+          1 camp's
+```
 
 ---
 
-## 🧪 Testing on Blue
+## Phase 3 – Huffman Coding (Final Phase)
 
-1. Copy the provided scripts:
+### Purpose
 
-```bash
-cp /home/faculty/kooshesh/cs315_fall2025/project3/part2/copy_files.bash .
-cp /home/faculty/kooshesh/cs315_fall2025/project3/part2/compile_and_test_project3_part2.bash .
+Implements Huffman’s algorithm to generate optimal prefix-free binary codes based on word frequency.
+
+### Process
+
+1. Reads `.freq` file from Phase 2.
+2. Inserts words and frequencies into a min-priority queue.
+3. Builds a Huffman Tree by merging the two least-frequent nodes repeatedly.
+4. Assigns binary codes (`0` and `1`) to each unique word.
+5. Produces:
+
+   * `<base>.codetable` – mapping of words to binary codes
+   * `<base>.huff` – compressed binary representation of the input text
+
+### Example Code Table
+
+```
+the        → 10
+of         → 110
+and        → 111
+camp's     → 011010
 ```
 
-2. Copy sample inputs:
+### Example Run
 
 ```bash
-bash copy_files.bash
+./p3_complete.x input_output/the_call_of_the_wild.txt
 ```
 
-3. Compile + run + compare all:
+Output files:
+
+```
+input_output/the_call_of_the_wild.tokens
+input_output/the_call_of_the_wild.freq
+input_output/the_call_of_the_wild.codetable
+input_output/the_call_of_the_wild.huff
+```
+
+---
+
+## Build Instructions
+
+### Compile
 
 ```bash
+g++ -std=c++20 -Wall *.cpp -o huffman_final.x
+```
+
+### Run
+
+```bash
+./huffman_final.x input_output/the_call_of_the_wild.txt
+```
+
+---
+
+## Testing and Verification
+
+### Provided Scripts
+
+```bash
+bash compile_and_test.bash
 bash compile_and_test_project3_part2.bash
+bash compile_and_test_project3_final_version.bash
 ```
 
-Expected output:
+### Expected Output
 
 ```
-tokens matches
-freq matches
-Summary: 20 match(es), 0 diff(s)
+tokens match
+freq match
+codetable match
+huff match
+Summary: All phases verified successfully.
 ```
+
+All tests were executed successfully on the Blue (Sonoma) environment.
 
 ---
 
-## 🧱 Core Components
-
-| File                       | Description                                                                                           |
-| -------------------------- | ----------------------------------------------------------------------------------------------------- |
-| **main.cpp**               | Controls overall flow: tokenization → BST build → frequency file output                               |
-| **BinSearchTree.h / .cpp** | Implements BST with `insert`, `bulkInsert`, `inorderCollect`, `contains`, `countOf`, `height`, `size` |
-| **TreeNode.h**             | Defines node structure (word + frequency + links)                                                     |
-| **PriorityQueue.h / .cpp** | Stores `TreeNode*` by frequency (prep for Part 3 Huffman coding)                                      |
-| **Scanner.hpp / .cpp**     | Reads and tokenizes input text                                                                        |
-| **utils.hpp / .cpp**       | Error-checking and file-I/O helpers                                                                   |
-| **CMakeLists.txt**         | Build configuration for CLion / CMake                                                                 |
-
----
-
-## 📊 Program Output Example
-
-```bash
-./p3_part2.x input_output/the_toil_of_trace_and_trail.txt
-```
-
-Output:
+## Project Structure
 
 ```
-BST height: 28
-BST unique words: 1432
-Total tokens: 5471
-Min frequency: 1
-Max frequency: 371
-```
-
-Files produced:
-
-```
-input_output/the_toil_of_trace_and_trail.tokens
-input_output/the_toil_of_trace_and_trail.freq
-```
-
----
-
-## ✅ Verification Status
-
-All reference comparisons pass on Blue:
-
-```
-Summary: 20 match(es), 0 diff(s)
-```
-
-This confirms tokenization, BST logic, and `.freq` formatting are correct and ready for Part 3.
-
----
-
-## 📦 Project Structure
-
-```
-Project3_Part2/
-├── BinSearchTree.cpp / .h
-├── PriorityQueue.cpp / .h
-├── Scanner.cpp / .hpp
-├── TreeNode.h
-├── utils.cpp / .hpp
-├── main.cpp
-├── CMakeLists.txt
+Huffman/
 ├── input_output/
 │   ├── *.txt
 │   ├── *.tokens
-│   └── *.freq
+│   ├── *.freq
+│   ├── *.codetable
+│   └── *.huff
+├── BinSearchTree.cpp
+├── BinSearchTree.h
+├── PriorityQueue.cpp
+├── PriorityQueue.h
+├── HuffmanTree.cpp
+├── HuffmanTree.h
+├── TreeNode.h
+├── Scanner.cpp
+├── Scanner.hpp
+├── utils.cpp
+├── utils.hpp
+├── main.cpp
+├── compile_and_test.bash
 ├── compile_and_test_project3_part2.bash
-└── copy_files.bash
+├── compile_and_test_project3_final_version.bash
+├── copy_files.bash
+├── CMakeLists.txt
+└── README.md
 ```
 
 ---
 
-## 🧾 Notes
+## Core Components
 
-* BST insertion order is randomized with a fixed seed for consistent grading.
-* `.freq` output format matches instructor spec:
-
-  ```
-         <right-aligned count> <word>
-  ```
-
-  (10-character padded numeric field).
-
----
-
-## 🔗 Repository
-
-**GitHub:** [https://github.com/Pwingles/HuffmanPart2/tree/master](https://github.com/Pwingles/HuffmanPart2/tree/master)
+| File                       | Description                                                      |
+| -------------------------- | ---------------------------------------------------------------- |
+| **Scanner.cpp / .hpp**     | Tokenizes input text and generates `.tokens`                     |
+| **BinSearchTree.cpp / .h** | Builds and manages BST for frequency counting                    |
+| **PriorityQueue.cpp / .h** | Manages nodes ordered by frequency for Huffman tree construction |
+| **HuffmanTree.cpp / .h**   | Implements Huffman encoding and code table generation            |
+| **TreeNode.h**             | Defines structure for tree nodes (word, frequency, links)        |
+| **utils.cpp / .hpp**       | Handles error checking, file I/O, and formatting                 |
+| **main.cpp**               | Coordinates all phases in order: Scanner → BST → Huffman         |
 
 ---
 
+## Sources and References
 
-## 📚 Sources
-- **Instructor-provided base code and project specifications**  
-  `/home/faculty/kooshesh/cs315_fall2025/project3/part2/`  
-
-- **C++ References:**  
-  - [cppreference.com – std::filesystem](https://en.cppreference.com/w/cpp/filesystem)  
-  - [cppreference.com – std::vector](https://en.cppreference.com/w/cpp/container/vector)  
-  - [cppreference.com – std::ofstream](https://en.cppreference.com/w/cpp/io/basic_ofstream)  
-- **Testing Environment:** Blue Linux server (CS 315)  
-- **ChatGPT** Generating README.md - Proofread after by me
-- **Author’s GitHub Repository:**  
-  [https://github.com/Pwingles/HuffmanPart2/tree/master](https://github.com/Pwingles/HuffmanPart2/tree/master)
+* Instructor-provided base code and project specifications.
+* [C++ Reference](https://en.cppreference.com/) for `std::filesystem`, file I/O.
+* Stack Overflow for algorithmic and debugging clarification.
+* ChatGPT used for formatting README and suggesting function prototypes (no code generation).
+* Testing performed on the Blue Linux Server (CS 315 environment).
 
 
+---
+
+## Summary
+
+| Phase | Focus               | Output                | Verified |
+| ----- | ------------------- | --------------------- | -------- |
+| **1** | Tokenizer (Scanner) | `.tokens`             | Yes      |
+| **2** | Binary Search Tree  | `.freq`               | Yes      |
+| **3** | Huffman Coding      | `.codetable`, `.huff` | Yes      |
+
+All components compile, execute, and match instructor reference outputs.
 
