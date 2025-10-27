@@ -139,7 +139,8 @@ void HuffmanTree::assignCodesDFS(const TreeNode* n,
         
         // This is if we hit a leaf node add it to out
         if(n->left == nullptr && n->right == nullptr){
-            out.push_back({n->key_word, prefix});
+            std::string code = prefix.empty() ? "0" : prefix; // single-word edge case
+            out.push_back({n->key_word, code});
             return; // go back to previous call
         }
 
@@ -173,7 +174,8 @@ void HuffmanTree::writeHeaderPreorder(const TreeNode* n, std::ostream& os,
 
     // Check if this is a leaf node (both children are nullptr)
     if(n->left == nullptr && n->right == nullptr) {
-        os << n->key_word << ' ' << prefix << '\n';
+        std::string code = prefix.empty() ? "0" : prefix; // single-word edge case
+        os << n->key_word << ' ' << code << '\n';
         return;
     }
     
